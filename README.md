@@ -75,6 +75,6 @@ Siamo aperti a contributi! Se desideri contribuire al progetto, segui questi pas
 Distribuito sotto la licenza Apache-2.0 license. Vedi `LICENSE` per maggiori informazioni.
 
 ## Contatti
-Andrea Antonio Perrelli - [LinkedIn](https://www.linkedin.com/in/andrea-antonio-perrelli-3b429b17b/) - email@example.com
+Andrea Antonio Perrelli - [LinkedIn](https://www.linkedin.com/in/andrea-antonio-perrelli-3b429b17b/) - snake09031999@gmail.com
 
 Link del Progetto: [GitHub](https://github.com/AndreaPerrelli/QuizWeb)
