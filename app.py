@@ -780,7 +780,16 @@ def delete_quiz(quiz_id):
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Get the PORT from environment, or default to 5000 for local development
-    create_db()  # Make sure the database is created or updated on startup
-    app.run(host="0.0.0.0", port=port)
+    # Crea il database se non esiste
+    create_db()
+    
+    # Verifica se la variabile di ambiente "PORT" è impostata (di solito presente su Railway)
+    port = int(os.environ.get("PORT", 5000))  # Usa la porta da variabile di ambiente su Railway, o 5000 in locale
+    
+    # Esegui l'applicazione
+    if os.environ.get("RAILWAY_ENVIRONMENT"):  # Railway imposta la variabile "RAILWAY_ENVIRONMENT"
+        app.run(host="0.0.0.0", port=port)
+    else:
+        app.run(debug=True, port=port)
+
 
