@@ -215,6 +215,11 @@ def upload_quiz():
             return redirect(url_for('index'))
 
         file.seek(0)  # Reset file pointer after checking size
+
+        # Assicurati che la directory esista
+        if not os.path.exists(app.config['UPLOAD_FOLDER']):
+            os.makedirs(app.config['UPLOAD_FOLDER'])
+
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
@@ -231,6 +236,7 @@ def upload_quiz():
 
     flash('Unsupported file type', 'danger')
     return redirect(url_for('index'))
+
 
 def row_to_dict(row):
     return {key: row[key] for key in row.keys()}
