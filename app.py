@@ -1,4 +1,6 @@
 from datetime import timedelta  # Aggiungi questa riga agli import
+import os
+from dotenv import load_dotenv  # Import dotenv for local development
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 import sqlite3
@@ -17,11 +19,16 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask_session import Session
 
+load_dotenv()  # Load variables from .env file
+
 app = Flask(__name__)
-app.secret_key = 'una_chiave_segreta_molto_sicura'
+app.secret_key = os.environ.get('SECRET_KEY', 'default_secret_key')
 UPLOAD_FOLDER = 'uploads/'
 ALLOWED_EXTENSIONS = {'txt'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# Email credentials (use environment variables)
+EMAIL_USER = os.environ.get('EMAIL_USER')
+EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 # Configura Flask-Session
 app.config['SESSION_TYPE'] = 'filesystem'  # Memorizza la sessione nel filesystem
 Session(app)
@@ -448,8 +455,8 @@ def statistics():
                            graphJSON=graphJSON)
 
 def send_verification_email(recipient_email, code):
-    sender_email = "snake09031999@gmail.com"
-    sender_password = "umbr quqq qmps eujg"
+    sender_email = EMAIL_USER
+    sender_password = EMAIL_PASSWORD
     subject = "Il tuo codice di verifica"
     
     msg = MIMEMultipart()
