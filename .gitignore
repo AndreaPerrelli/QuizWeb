@@ -3,3 +3,5 @@
 
 # Ignore uploaded files
 uploads/
+
+database.db

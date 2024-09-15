@@ -7,32 +7,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Palette di colori */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --accent-color: #ffc107;
+            --background-color: #f8f9fa;
+            --navbar-color: #343a40;
+            --footer-color: #343a40;
+            --option-hover-color: #e9ecef;
+            --option-selected-color: #007bff;
+        }
+
+        /* Stile globale */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
+            background-color: var(--background-color);
         }
+
         .container {
             margin-top: 30px;
         }
-        .card {
-            margin-bottom: 20px;
-            transition: transform 0.2s ease-in-out;
-        }
-        .card:hover {
-            transform: scale(1.02);
-        }
-        .btn {
-            transition: background-color 0.2s ease;
-        }
+
+        /* Navbar */
         .navbar, .footer {
-            background-color: #343a40;
+            background-color: var(--navbar-color);
         }
         .navbar-brand {
-            color: white;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         .navbar a, .footer a {
             color: white;
+            transition: color 0.2s ease-in-out;
         }
+        .navbar a:hover, .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
         .footer {
             padding: 20px;
             text-align: center;
@@ -41,6 +55,99 @@
         .footer p {
             margin: 0;
             color: white;
+        }
+
+        /* Stile pulsanti */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: darken(var(--primary-color), 10%);
+            transform: scale(1.05);
+        }
+        .btn-accent {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-accent:hover {
+            background-color: darken(var(--accent-color), 10%);
+            transform: scale(1.05);
+        }
+
+        /* Stile del quiz */
+        .quiz-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .question-box {
+            background-color: var(--option-hover-color);
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+
+        /* Stile delle opzioni */
+        .option-card {
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .option-card:hover {
+            background-color: var(--option-hover-color);
+            border-color: var(--primary-color);
+        }
+
+        .option-card input[type="checkbox"]:checked + label {
+            background-color: var(--option-selected-color);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .option-card input[type="checkbox"] {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .option-card label {
+            cursor: pointer;
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Tipografia */
+        h2 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--secondary-color);
+        }
+
+        .question-box h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .text-muted {
+            font-size: 0.9rem;
         }
     </style>
 </head>

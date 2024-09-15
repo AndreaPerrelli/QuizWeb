@@ -5,17 +5,26 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Feedback</h1>
-
-    <div class="feedback-container">
-        {% if feedback.is_correct %}
-            <p class="success">Risposta corretta!</p>
-        {% else %}
-            <p class="error">Risposta errata. Le risposte corrette erano: {{ feedback.correct_answers }}</p>
-        {% endif %}
+    <div class="d-flex justify-content-center mt-5">
+        <div class="card text-center shadow-lg p-3 mb-5 bg-body rounded" style="width: 24rem;">
+            <div class="card-body">
+                <h1 class="card-title">Feedback</h1>
+                {% if feedback.is_correct %}
+                    <div class="alert alert-success" role="alert">
+                        <i class="fas fa-check-circle"></i> Risposta corretta!
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fas fa-times-circle"></i> Risposta errata. Le risposte corrette erano:
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ feedback.correct_answers | join('') }}</li>
+                        </ul>
+                    </div>
+                {% endif %}
+                <form action="{{ url_for('next_question') }}" method="POST">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Prossima Domanda</button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <form action="{{ url_for('next_question') }}" method="POST">
-        <button type="submit">Prossima Domanda</button>
-    </form>
 {% endblock %}
