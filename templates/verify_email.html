@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Verifica Email{% endblock %}
+
+{% block content %}
+    <h2>Verifica la tua Email</h2>
+    <p>Abbiamo inviato un codice di verifica al tuo indirizzo Gmail. Inserisci il codice qui sotto per completare la registrazione.</p>
+    <form method="POST">
+        <div class="form-group">
+            <label for="verification_code">Codice di Verifica:</label>
+            <input type="text" name="verification_code" id="verification_code" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Verifica</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Feedback - Quiz
+{% endblock %}
+
+{% block content %}
+    <h1>Feedback</h1>
+
+    <div class="feedback-container">
+        {% if feedback.is_correct %}
+            <p class="success">Risposta corretta!</p>
+        {% else %}
+            <p class="error">Risposta errata. Le risposte corrette erano: {{ feedback.correct_answers }}</p>
+        {% endif %}
+    </div>
+
+    <form action="{{ url_for('next_question') }}" method="POST">
+        <button type="submit">Prossima Domanda</button>
+    </form>
+{% endblock %}

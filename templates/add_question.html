@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Aggiungi Domanda{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Aggiungi una nuova Domanda a {{ quiz_name }}</h2>
+    <form method="POST" class="mx-auto" style="max-width: 600px;">
+        <div class="form-group mb-3">
+            <label for="question">Domanda:</label>
+            <input type="text" name="question" id="question" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="answer">Risposta corretta:</label>
+            <input type="text" name="answer" id="answer" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="option1">Opzione 1 (obbligatoria):</label>
+            <input type="text" name="option1" id="option1" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="option2">Opzione 2 (obbligatoria):</label>
+            <input type="text" name="option2" id="option2" class="form-control" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="option3">Opzione 3 (opzionale):</label>
+            <input type="text" name="option3" id="option3" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="option4">Opzione 4 (opzionale):</label>
+            <input type="text" name="option4" id="option4" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+            <label for="option5">Opzione 5 (opzionale):</label>
+            <input type="text" name="option5" id="option5" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success w-100">Aggiungi Domanda</button>
+    </form>
+{% endblock %}

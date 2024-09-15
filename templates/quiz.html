@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Quiz - {{ quiz_name if quiz_name else 'Quiz' }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ quiz_name if quiz_name else 'Quiz' }}</h1>
+    
+    <div class="quiz-container">
+        <form action="{{ url_for('submit_answer') }}" method="POST">
+            <!-- Hidden input to ensure at least an empty value is sent if no checkboxes are selected -->
+            <input type="hidden" name="answer" value="">
+
+            <!-- Display question and options -->
+            <p><strong>Domanda {{ question_number }} di {{ total_questions }}</strong></p>
+            <p>{{ question.question }}</p>
+
+            <!-- Mostra le opzioni mescolate -->
+            {% for option in options %}
+                <div>
+                    <input type="checkbox" id="{{ option }}" name="answer" value="{{ option }}">
+                    <label for="{{ option }}">{{ option }}</label>
+                </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn btn-primary">Invia Risposta</button>
+        </form>
+    </div>
+{% endblock %}

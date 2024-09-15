@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Seleziona Quiz{% endblock %}
+
+{% block content %}
+    <h2>Seleziona un Quiz</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="quiz_id">Scegli un quiz:</label>
+            <select name="quiz_id" id="quiz_id" class="form-control">
+                {% for quiz in quizzes %}
+                    <option value="{{ quiz.id }}">{{ quiz.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Inizia Quiz</button>
+    </form>
+{% endblock %}

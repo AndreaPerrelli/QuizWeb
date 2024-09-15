@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Aggiungi Quiz{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Crea un nuovo Quiz</h2>
+    <form method="POST" class="mx-auto" style="max-width: 600px;">
+        <div class="form-group mb-3">
+            <label for="quiz_name">Nome del Quiz:</label>
+            <input type="text" name="quiz_name" id="quiz_name" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Crea Quiz</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Benvenuto nella Piattaforma Quiz</h1>
+
+    {% if 'user_id' in session %}
+        {% if user_quizzes %}
+            <div class="row">
+                {% for quiz in user_quizzes %}
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ quiz.name }}</h5>
+                                <a href="{{ url_for('edit_quiz', quiz_id=quiz.id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Modifica</a>
+                                <a href="{{ url_for('share_quiz', quiz_id=quiz.id) }}" class="btn btn-info btn-sm"><i class="fas fa-share-alt"></i> Condividi</a>
+                                <a href="{{ url_for('delete_quiz', quiz_id=quiz.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Sei sicuro di voler eliminare questo quiz?')"><i class="fas fa-trash"></i> Elimina</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center">Non hai ancora creato nessun quiz.</p>
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <h2>Crea o Carica un nuovo Quiz</h2>
+            <form action="{{ url_for('upload_quiz') }}" method="post" enctype="multipart/form-data" class="mb-3">
+                <div class="form-group">
+                    <input type="file" name="quiz_file" id="quiz_file" class="form-control-file" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Carica Quiz</button>
+            </form>
+            <a href="{{ url_for('add_quiz') }}" class="btn btn-success"><i class="fas fa-plus"></i> Crea nuovo Quiz</a>
+            <a href="{{ url_for('select_quiz') }}" class="btn btn-primary"><i class="fas fa-play"></i> Fai un Quiz</a>
+            <a href="{{ url_for('statistics') }}" class="btn btn-info"><i class="fas fa-chart-bar"></i> Visualizza Statistiche</a>
+        </div>
+    {% else %}
+        <p class="text-center">Accedi o registrati per iniziare a creare e fare quiz!</p>
+        <div class="text-center mt-3">
+            <a href="{{ url_for('login') }}" class="btn btn-primary me-2"><i class="fas fa-sign-in-alt"></i> Accedi</a>
+            <a href="{{ url_for('register') }}" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Registrati</a>
+        </div>
+    {% endif %}
+{% endblock %}

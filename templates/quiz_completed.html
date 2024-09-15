@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz Completato{% endblock %}
+
+{% block content %}
+    <h2>Quiz Completato!</h2>
+    <p>Hai risposto correttamente a {{ correct }} domande su {{ total }}.</p>
+    <p>Il tuo punteggio è: {{ score|round(2) }}%</p>
+    <a href="{{ url_for('select_quiz') }}" class="btn btn-primary">Torna alla selezione dei quiz</a>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Statistiche{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h2 class="mb-4">Statistiche del Quiz</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Totale risposte</h5>
+                        <p class="display-4">{{ total_answers }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Risposte corrette</h5>
+                        <p class="display-4">{{ correct_answers }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Precisione</h5>
+                        <p class="display-4">{{ accuracy|round(2) }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if most_difficult %}
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Domanda più difficile</h5>
+                    <p>{{ most_difficult.question }}</p>
+                    <p class="text-danger">Risposte errate: {{ most_difficult.incorrect_count }}</p>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info">Non ci sono dati sufficienti per determinare la domanda più difficile.</div>
+        {% endif %}
+
+        <h3 class="mt-4">Grafico delle Risposte</h3>
+        <div id="chart" class="mb-5" style="height: 400px;"></div>
+    </div>
+
+    <script>
+        var graphJSON = JSON.parse('{{ graphJSON | safe }}');
+        Plotly.newPlot('chart', graphJSON.data, graphJSON.layout);
+    </script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Condividi Quiz{% endblock %}
+
+{% block content %}
+    <h2>Condividi il tuo Quiz</h2>
+    <p>Usa il seguente link per condividere il tuo quiz:</p>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" value="{{ share_link }}" id="share-link" readonly>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard()">Copia</button>
+        </div>
+    </div>
+    <h3>Condividi con un utente specifico:</h3>
+    <form method="POST">
+        <div class="form-group">
+            <label for="username">Nome utente:</label>
+            <input type="text" name="username" id="username" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Condividi</button>
+    </form>
+    <script>
+        function copyToClipboard() {
+            var copyText = document.getElementById("share-link");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            alert("Link copiato negli appunti!");
+        }
+    </script>
+{% endblock %}
